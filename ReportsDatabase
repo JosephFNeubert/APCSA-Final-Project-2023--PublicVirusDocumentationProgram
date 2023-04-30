@@ -1,0 +1,11 @@
+/* 
+This class will execute all the necessary functions of the program
+to organize, sort, add, and find within the database of virus site reports. 
+*/
+//Import necessary ArrayList package
+import java.util.ArrayList;
+
+//ReportsDatabase class
+public class ReportsDatabase {
+    private ArrayList<String[]> reports;
+}
