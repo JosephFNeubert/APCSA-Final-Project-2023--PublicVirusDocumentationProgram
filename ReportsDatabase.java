@@ -42,5 +42,26 @@ public class ReportsDatabase {
         }
     }
 
-    // TODO Next Method
+    // Method to do the initial search of reports within database
+    public ArrayList<String[]> search1(String target, int targetType) {
+        ArrayList<String[]> temp = new ArrayList<String[]>();
+        int count = 0;
+        for (int i = 0; i < reports.size(); i++) {
+            if (reports.get(i)[targetType].equals(target)) {
+                count++;
+                temp.add(reports.get(i));
+            }
+        }
+        System.out.println("We have found " + count + " reports from your query.");
+        return temp;
+    }
+
+    // Method to do the deeper search if chosen by user
+    public void search2(ArrayList<String[]> temp, int number) {
+        if (number == 0) {
+            for (String[] i : temp) {
+                System.out.println("");
+            }
+        }
+    }
 }
