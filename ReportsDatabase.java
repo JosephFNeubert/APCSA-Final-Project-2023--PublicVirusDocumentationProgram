@@ -60,8 +60,14 @@ public class ReportsDatabase {
     public void search2(ArrayList<String[]> temp, int number) {
         if (number == 0) {
             for (String[] i : temp) {
-                System.out.println("");
+                String displaySiteName = i[0].substring(1);
+                String capitalLetter = i[0].substring(0, 1).toUpperCase();
+                displaySiteName = capitalLetter + displaySiteName;
+                System.out.println(displaySiteName + " | " + i[1] + " | " + i[2] + " | " + i[3] + " | " + i[4]);
             }
+        } else {
+            System.out.println(temp.get(number + 1));
         }
     }
 }
+// TODO: Edit add report function to change how the numbering system.
