@@ -17,9 +17,20 @@ public class ReportsDatabase {
     }
 
     // Method to add new report to the database
-    public void newReport(String websiteName, String link, String malwareType, String number, String description) {
+    public void newReport(String websiteName, String link, String malwareType, String description) {
         websiteName = websiteName.toLowerCase();
-        String[] temp = { websiteName, link, malwareType, number, description };
+
+        // To determine the report "number" to be assigned
+        int numberCount = 1;
+        for (int i = 0; i < reports.size(); i++) {
+            if (websiteName.compareTo(reports.get(i)[0]) == 0) {
+                numberCount++;
+            }
+        }
+        String numberCountString = "" + numberCount;
+
+        // Creates the individual report array that'll be put into the database
+        String[] temp = { websiteName, link, malwareType, numberCountString, description };
 
         // Linear search to determine what index this new report is placed in database
         int count = 0;
@@ -70,4 +81,3 @@ public class ReportsDatabase {
         }
     }
 }
-// TODO: Edit add report function to change how the numbering system.
