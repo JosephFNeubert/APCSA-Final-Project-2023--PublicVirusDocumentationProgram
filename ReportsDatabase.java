@@ -77,7 +77,7 @@ public class ReportsDatabase {
                 System.out.println(displaySiteName + " | " + i[1] + " | " + i[2] + " | " + i[3] + " | " + i[4]);
             }
         } else {
-            System.out.println(temp.get(number + 1));
+            System.out.println(temp.get(number - 1));
         }
     }
 }
