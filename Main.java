@@ -72,7 +72,53 @@ public class Main {
 
             // Process to search within the report database
             else if (flag1.equals("2")) {
-                // TODO
+                // First search by website name or link
+                System.out.println("To search by website name, type 1. To search by link, type 2.");
+                int targetType = -1;
+                String targetTypeString = "";
+                while (targetType == -1) {
+                    targetTypeString = scan.nextLine();
+                    if (targetTypeString.equals("1")) {
+                        targetType = 0;
+                        targetTypeString = "website name";
+                    } else if (targetTypeString.equals("2")) {
+                        targetType = 1;
+                        targetTypeString = "link";
+                    } else {
+                        System.out.println("Please type a valid number.");
+                    }
+                }
+                System.out.println("Please type the " + targetTypeString + " to search for.");
+                String target = scan.nextLine();
+                ArrayList<String[]> searchResult = database.search1(target, targetType);
+
+                // Second search for individual reports
+                System.out.println("Would you like to see individual reports? Type \"YES\" or \"NO\".");
+                String flag2 = "";
+                boolean flag3 = false;
+                while (flag3 == false) {
+                    flag2 = scan.nextLine();
+                    if (flag2.equals("YES")) {
+                        System.out.println(
+                                "If you want to see all reports, please type 0. If you want to see a single report, type the number of the report (numbered from 1 to "
+                                        + searchResult.size() + ").\nType \"STOP\" to end the search.");
+                        int flag5 = -1;
+                        boolean flag6 = false;
+                        while (flag6 == false) {
+                            flag5 = scan.nextInt();
+                            if (flag5 == 0) {
+                                database.search2(searchResult, 0);
+                                flag6 = true;
+                            } else {
+                                database.search2(searchResult, flag5);
+                            }
+                        }
+                    } else if (!flag2.equals("NO")) {
+                        System.out.println("Please type a valid option.");
+                    } else {
+                        flag3 = true;
+                    }
+                }
             }
 
             // Reset due to invalid input
