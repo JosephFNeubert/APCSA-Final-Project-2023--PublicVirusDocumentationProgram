@@ -116,10 +116,14 @@ public class Main {
                                     flag3 = true;
                                     flag6 = true;
                                 } else {
-                                    int reportNumber = Integer.parseInt(flag5);
-                                    if (reportNumber >= 0 && reportNumber <= searchResult.size()) {
-                                        database.search2(searchResult, reportNumber);
-                                    } else {
+                                    try {
+                                        int reportNumber = Integer.parseInt(flag5);
+                                        if (reportNumber >= 0 && reportNumber <= searchResult.size()) {
+                                            database.search2(searchResult, reportNumber);
+                                        } else {
+                                            System.out.println("That is an invalid number. Please try again.");
+                                        }
+                                    } catch (Exception e) {
                                         System.out.println("That is an invalid number. Please try again.");
                                     }
                                 }
