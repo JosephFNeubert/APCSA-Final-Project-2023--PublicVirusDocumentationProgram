@@ -91,37 +91,44 @@ public class Main {
                 System.out.println("Please type the " + targetTypeString + " to search for.");
                 String target = scan.nextLine();
                 ArrayList<String[]> searchResult = database.search1(target.toLowerCase(), targetType);
+                boolean flag7 = false;
+                if (searchResult.size() <= 0) {
+                    System.out.println("No results were found from your search.");
+                    flag7 = true;
+                }
 
                 // Second search for individual reports
-                System.out.println("Would you like to see individual reports? Type \"YES\" or \"NO\".");
-                String flag2 = "";
-                boolean flag3 = false;
-                while (flag3 == false) {
-                    flag2 = scan.nextLine();
-                    if (flag2.equals("YES")) {
-                        boolean flag6 = false;
-                        while (flag6 == false) {
-                            System.out.println(
-                                    "If you want to see all reports, please type 0. If you want to see a single report, type the number of the report (numbered from 1 to "
-                                            + searchResult.size() + ").\nType \"STOP\" to end the search.");
-                            String flag5 = "";
-                            flag5 = scan.nextLine();
-                            if (flag5.equals("STOP")) {
-                                flag3 = true;
-                                flag6 = true;
-                            } else {
-                                int reportNumber = Integer.parseInt(flag5);
-                                if (reportNumber >= 0 && reportNumber <= searchResult.size()) {
-                                    database.search2(searchResult, reportNumber);
+                if (flag7 == false) {
+                    System.out.println("Would you like to see individual reports? Type \"YES\" or \"NO\".");
+                    String flag2 = "";
+                    boolean flag3 = false;
+                    while (flag3 == false) {
+                        flag2 = scan.nextLine();
+                        if (flag2.equals("YES")) {
+                            boolean flag6 = false;
+                            while (flag6 == false) {
+                                System.out.println(
+                                        "If you want to see all reports, please type 0. If you want to see a single report, type the number of the report (numbered from 1 to "
+                                                + searchResult.size() + ").\nType \"STOP\" to end the search.");
+                                String flag5 = "";
+                                flag5 = scan.nextLine();
+                                if (flag5.equals("STOP")) {
+                                    flag3 = true;
+                                    flag6 = true;
                                 } else {
-                                    System.out.println("That is an invalid number. Please try again.");
+                                    int reportNumber = Integer.parseInt(flag5);
+                                    if (reportNumber >= 0 && reportNumber <= searchResult.size()) {
+                                        database.search2(searchResult, reportNumber);
+                                    } else {
+                                        System.out.println("That is an invalid number. Please try again.");
+                                    }
                                 }
                             }
+                        } else if (!flag2.equals("NO")) {
+                            System.out.println("Please type a valid option.");
+                        } else {
+                            flag3 = true;
                         }
-                    } else if (!flag2.equals("NO")) {
-                        System.out.println("Please type a valid option.");
-                    } else {
-                        flag3 = true;
                     }
                 }
             }
