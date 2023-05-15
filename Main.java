@@ -99,18 +99,22 @@ public class Main {
                 while (flag3 == false) {
                     flag2 = scan.nextLine();
                     if (flag2.equals("YES")) {
-                        System.out.println(
-                                "If you want to see all reports, please type 0. If you want to see a single report, type the number of the report (numbered from 1 to "
-                                        + searchResult.size() + ").\nType \"STOP\" to end the search.");
-                        int flag5 = -1;
                         boolean flag6 = false;
                         while (flag6 == false) {
-                            flag5 = scan.nextInt();
-                            if (flag5 == 0) {
-                                database.search2(searchResult, 0);
-                                flag6 = true;
+                            System.out.println(
+                                    "If you want to see all reports, please type 0. If you want to see a single report, type the number of the report (numbered from 1 to "
+                                            + searchResult.size() + ").\nType \"STOP\" to end the search.");
+                            String flag5 = "";
+                            flag5 = scan.nextLine();
+                            if (flag5.equals("STOP")) {
+                                flag3 = true;
                             } else {
-                                database.search2(searchResult, flag5);
+                                int reportNumber = Integer.parseInt(flag5);
+                                if (reportNumber >= 0 && reportNumber < searchResult.size()) {
+                                    database.search2(searchResult, reportNumber);
+                                } else {
+                                    System.out.println("That is an invalid number. Please try again.");
+                                }
                             }
                         }
                     } else if (!flag2.equals("NO")) {
