@@ -19,6 +19,7 @@ public class ReportsDatabase {
     // Method to add new report to the database
     public void newReport(String websiteName, String link, String malwareType, String description) {
         websiteName = websiteName.toLowerCase();
+        link = link.toLowerCase();
 
         // To determine the report "number" to be assigned
         int numberCount = 1;
@@ -35,14 +36,15 @@ public class ReportsDatabase {
         // Linear search to determine what index this new report is placed in database
         int count = 0;
         int countStart = 0;
-        boolean countStartCondition = false;
+        int countStartCondition = 0;
         for (int i = 0; i < reports.size(); i++) {
             if (temp[0].compareTo(reports.get(i)[0]) == 0) {
-                if (countStartCondition == false) {
+                countStartCondition++;
+                if (countStartCondition == 2) {
                     countStart = i;
-                    countStartCondition = true;
+                } else if (countStartCondition > 2) {
+                    count++;
                 }
-                count++;
             }
         }
         count = count + countStart + 1;
@@ -77,7 +79,12 @@ public class ReportsDatabase {
                 System.out.println(displaySiteName + " | " + i[1] + " | " + i[2] + " | " + i[3] + " | " + i[4]);
             }
         } else {
-            System.out.println(temp.get(number - 1));
+            String[] searchedReport = temp.get(number - 1);
+            String displaySiteName = searchedReport[0].substring(1);
+            String capitalLetter = searchedReport[0].substring(0, 1).toUpperCase();
+            displaySiteName = capitalLetter + displaySiteName;
+            System.out.println(displaySiteName + " | " + searchedReport[1] + " | " + searchedReport[2] + " | "
+                    + searchedReport[3] + " | " + searchedReport[4]);
         }
     }
 }

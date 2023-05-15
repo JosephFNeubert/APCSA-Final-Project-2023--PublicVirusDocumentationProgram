@@ -90,7 +90,7 @@ public class Main {
                 }
                 System.out.println("Please type the " + targetTypeString + " to search for.");
                 String target = scan.nextLine();
-                ArrayList<String[]> searchResult = database.search1(target, targetType);
+                ArrayList<String[]> searchResult = database.search1(target.toLowerCase(), targetType);
 
                 // Second search for individual reports
                 System.out.println("Would you like to see individual reports? Type \"YES\" or \"NO\".");
@@ -108,9 +108,10 @@ public class Main {
                             flag5 = scan.nextLine();
                             if (flag5.equals("STOP")) {
                                 flag3 = true;
+                                flag6 = true;
                             } else {
                                 int reportNumber = Integer.parseInt(flag5);
-                                if (reportNumber >= 0 && reportNumber < searchResult.size()) {
+                                if (reportNumber >= 0 && reportNumber <= searchResult.size()) {
                                     database.search2(searchResult, reportNumber);
                                 } else {
                                     System.out.println("That is an invalid number. Please try again.");
